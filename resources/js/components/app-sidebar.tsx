@@ -4,8 +4,11 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, GitFork, Hospital,UsersRound, 
-    GraduationCap, Notebook, LandPlot, CalendarCog  } from 'lucide-react';
+import {
+    BookOpen, Folder, LayoutGrid, GitFork, Hospital, UsersRound,
+    GraduationCap, Notebook, LandPlot, CalendarCog, NotepadTextDashed, DollarSign, FileText,
+    TrendingUp
+} from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -66,10 +69,11 @@ const footerNavItems: NavItem[] = [
 ];
 
 export function AppSidebar() {
-    const {props} = usePage();
+    const { props } = usePage();
     const user = (props as any).auth?.user;
     const isAdmin = user?.role === 'admin';
     const isDepartmentHead = user?.role === 'department_head';
+    const isTeacher = user?.role === 'teacher';
 
     const mainNavItems: NavItem[] = [
         {
@@ -78,7 +82,9 @@ export function AppSidebar() {
             icon: LayoutGrid,
         }
     ];
-     // Admin-only items
+
+
+    // Admin-only items
     if (isAdmin) {
         mainNavItems.push(
             {
@@ -121,8 +127,37 @@ export function AppSidebar() {
                 title: 'Lớp học',
                 href: '/classrooms',
                 icon: GitFork,
+            },
+            {
+                title: 'Tính lương',
+                href: '/salary',
+                icon: DollarSign,
+            },
+            {
+                title: 'Báo cáo',
+                href: '/reports',
+                icon: FileText,
             }
         );
+    }
+    else {
+        mainNavItems.push(
+            {
+                title: 'Lớp học đang dạy',
+                href: '/teacher/classrooms',
+                icon: BookOpen,
+            },
+            {
+                title: 'Bảng lương',
+                href: '/teacher/salary',
+                icon: TrendingUp,
+            },
+            {
+                title: 'Báo cáo lương',
+                href: '/teacher/reports',
+                icon: FileText,
+            }
+        )
     }
 
     const footerNavItems: NavItem[] = [

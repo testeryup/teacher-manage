@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->string('name')->unique()->after('id');
+        Schema::table('salary_configs', function (Blueprint $table) {
+            $table->dropUnique(['month']);
+            $table->dropColumn('month');
         });
     }
 
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->dropColumn('name');
-        });
+        //
     }
 };
