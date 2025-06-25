@@ -12,7 +12,7 @@
 
 Hệ thống quản lý giảng viên là một ứng dụng web được xây dựng để hỗ trợ quản lý thông tin giảng viên, lớp học và tính toán lương giảng dạy một cách tự động và chính xác.
 
-### Link Deployment Website
+### Website
 
 https://msa.codes
 
@@ -99,6 +99,104 @@ salary_configs -> teacher_salaries
 
 #### Báo cáo toàn trường
 ![Báo cáo toàn trường](docs/screenshots/uni_report.png)
+
+---
+
+## Code minh hoạ phần chính project
+
+### Model Teacher
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Degree;
+use App\Models\Department;
+
+class Teacher extends Model
+{
+    protected $fillable = [
+        'fullName',
+        'DOB',
+        'phone',
+        'email',
+        'degree_id',
+        'department_id'
+    ];
+
+    public function degree()
+    {
+        return $this->belongsTo(Degree::class, 'degree_id');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function classrooms()
+    {
+        return $this->hasMany(Classroom::class, 'teacher_id');
+    }
+}
+```
+
+### Model Teacher Salary
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class TeacherSalary extends Model
+{
+    protected $fillable = [
+        'teacher_id',
+        'classroom_id', 
+        'salary_config_id',
+        'actual_lessons',
+        'class_coefficient',
+        'course_coefficient',
+        'teacher_coefficient',
+        'converted_lessons',
+        'total_salary'
+    ];
+
+    protected $casts = [
+        'class_coefficient' => 'decimal:1',
+        'course_coefficient' => 'decimal:1', 
+        'teacher_coefficient' => 'decimal:1',
+        'converted_lessons' => 'decimal:2',
+        'total_salary' => 'decimal:2'
+    ];
+
+    public function teacher(): BelongsTo
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+
+    public function classroom(): BelongsTo
+    {
+        return $this->belongsTo(Classroom::class);
+    }
+
+    public function salaryConfig(): BelongsTo
+    {
+        return $this->belongsTo(SalaryConfig::class);
+    }
+}
+```
+
+---
+
+## Link Repo và Deployment
+- **Repo**: https://github.com/testeryup/teacher-manage
+- **Deployment**: https://msa.codes/
+
+---
 
 ## 🛠️ Công nghệ sử dụng
 
