@@ -12,6 +12,14 @@
 
 Hệ thống quản lý giảng viên là một ứng dụng web được xây dựng để hỗ trợ quản lý thông tin giảng viên, lớp học và tính toán lương giảng dạy một cách tự động và chính xác.
 
+## Link Deployment Website
+
+https://msa.codes
+
+**Hosting**: Heroku
+**Database**: Mysql (Aiven)
+**Framework**: Laravel
+
 ### ✨ Tính năng chính
 
 - 🏫 **Quản lý khoa**: Tạo, sửa, xóa thông tin các khoa
@@ -23,7 +31,33 @@ Hệ thống quản lý giảng viên là một ứng dụng web được xây d
 - 🎯 **Quản lý lớp học**: Tạo lớp học đơn lẻ hoặc hàng loạt
 - 💰 **Tính lương giảng viên**: Tự động tính lương dựa trên các hệ số
 - 📊 **Báo cáo lương**: Xem và xuất báo cáo lương dạng PDF
-- 🔐 **Phân quyền**: Admin, Giáo viên và Trưởng khoa với quyền hạn khác nhau
+- 🔐 **Phân quyền**: *Admin*, *Giáo viên* và *Trưởng khoa* với quyền hạn khác nhau
+
+---
+
+## 📊 Database Schema
+
+### Bảng chính
+- `departments` - Khoa
+- `degrees` - Bằng cấp
+- `teachers` - Giảng viên
+- `academic_years` - Năm học
+- `semesters` - Học kỳ
+- `courses` - Môn học
+- `classrooms` - Lớp học
+- `salary_configs` - Cấu hình lương
+- `teacher_salaries` - Lương giảng viên
+
+### Relationships
+```
+departments -> teachers
+degrees -> teachers
+academic_years -> semesters
+semesters -> classrooms
+courses -> classrooms
+teachers -> classrooms
+salary_configs -> teacher_salaries
+```
 
 ---
 
@@ -48,6 +82,23 @@ Hệ thống quản lý giảng viên là một ứng dụng web được xây d
 ![Class Diagram](docs/diagrams/Classdiagram.svg)
 
 ---
+
+## Ảnh chụp màn hình một số tính năng chính của dự án
+
+#### Thêm giáo viên
+![Thêm giáo viên](docs/screenshots/add_teacher.png)
+
+#### Admin Dashboard
+![Admin Dashboard](docs/screenshots/dashboard.png)
+
+#### Quản lý lớp học
+![Quản lý lớp học](docs/screenshots/manage_class.png)
+
+#### Báo cáo cá nhân
+![Báo cáo cá nhân](docs/screenshots/personal_report.png)
+
+#### Báo cáo toàn trường
+![Báo cáo toàn trường](docs/screenshots/uni_report.png)
 
 ## 🛠️ Công nghệ sử dụng
 
@@ -83,8 +134,8 @@ Hệ thống quản lý giảng viên là một ứng dụng web được xây d
 
 ### 1. Clone repository
 ```bash
-git clone https://github.com/your-repo/teacher-management-system.git
-cd teacher-management-system
+git clone https://github.com/testeryup/teacher-management.git
+cd teacher-management
 ```
 
 ### 2. Cài đặt dependencies
@@ -171,31 +222,6 @@ teacher-management-system/
 
 ---
 
-## 📊 Database Schema
-
-### Bảng chính
-- `departments` - Khoa
-- `degrees` - Bằng cấp
-- `teachers` - Giảng viên
-- `academic_years` - Năm học
-- `semesters` - Học kỳ
-- `courses` - Môn học
-- `classrooms` - Lớp học
-- `salary_configs` - Cấu hình lương
-- `teacher_salaries` - Lương giảng viên
-
-### Relationships
-```
-departments -> teachers
-degrees -> teachers
-academic_years -> semesters
-semesters -> classrooms
-courses -> classrooms
-teachers -> classrooms
-salary_configs -> teacher_salaries
-```
-
----
 
 ## 🔧 Tính năng chi tiết
 
@@ -208,7 +234,7 @@ salary_configs -> teacher_salaries
 ### 2. Phân quyền
 - **Admin**: Toàn quyền quản lý hệ thống
 - **Department Head**: Chỉ quản lý dữ liệu thuộc khoa của mình
-- **Teacher**: Xem thông tin cá nhân (future)
+- **Teacher**: Xem thông tin cá nhân
 
 ### 3. Tính lương tự động
 **Công thức tính lương:**
