@@ -12,13 +12,13 @@
 
 Hệ thống quản lý giảng viên là một ứng dụng web được xây dựng để hỗ trợ quản lý thông tin giảng viên, lớp học và tính toán lương giảng dạy một cách tự động và chính xác.
 
-## Link Deployment Website
+### Link Deployment Website
 
 https://msa.codes
 
-**Hosting**: Heroku
-**Database**: Mysql (Aiven)
-**Framework**: Laravel
+- **Hosting**: Heroku
+- **Database**: Mysql (Aiven)
+
 
 ### ✨ Tính năng chính
 
@@ -280,36 +280,6 @@ Tiền_dạy_mỗi_lớp =  số_tiết_quy _đổi  * hệ_số_giáo_viên  * 
 2. Nhấn **"Tính lương"** để tự động tính toán
 3. Xem **Báo cáo** và **Xuất PDF**
 4. **Đóng bảng lương** khi hoàn tất
-
----
-
-## 🔑 Tài khoản mặc định
-
-```
-Admin:
-Email: admin@example.com
-Password: password
-
-Department Head:
-Email: dept_head@example.com  
-Password: password
-```
-
----
-
-## 🌟 Screenshots
-
-### Dashboard
-![Dashboard](docs/screenshots/dashboard.png)
-
-### Quản lý giảng viên
-![Teachers](docs/screenshots/teachers.png)
-
-### Báo cáo lương
-![Salary Report](docs/screenshots/salary-report.png)
-
-### Export PDF
-![PDF Export](docs/screenshots/pdf-export.png)
 
 ---
 
