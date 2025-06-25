@@ -31,7 +31,21 @@ Hệ thống quản lý giảng viên là một ứng dụng web được xây d
 
 ### Activity Diagram
 
+#### Tạo giảng viên
 ![Tạo giảng viên](docs/diagrams/Activity_Tao_giang_vien.svg)
+
+#### Tính lương
+![Tính lương](docs/diagrams/Activity_Tinh_luong.svg)
+
+#### Tạo lớp học hàng loạt
+![Tạo lớp học hàng loạt](docs/diagrams/ActivityBulkClass.svg)
+
+#### Xoá lớp học
+![Xoá lớp học](docs/diagrams/ActivityDeleteClass.svg)
+
+### Class Diagram
+
+![Class Diagram](docs/diagrams/Classdiagram.svg)
 
 ---
 
